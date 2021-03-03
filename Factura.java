@@ -15,12 +15,10 @@ public class Factura {
     public double descuento;
     public int submonto;
     public String libro;
-    public String[] matrizLibros = new String[50];
-    public int[][] precio = new int[2][50];
+    public String[] matrizLibros = new String[10];
+    public int[] precio = new int[10];
     public int[] cantidad = new int[50];
-
-    public int num = 0;
-    int[] matrizFacturas = new int[num];
+    public int[] matrizFacturas = new int[10];
 
     // Constructores
     Factura(){
@@ -34,13 +32,12 @@ public class Factura {
     // SETTERS
     public void setLibros(String libro, int precio, int cantidad){
         for (int i = 0; i < matrizLibros.length; i++) {
-            if (matrizLibros[i] == "") {
+            if (libro != matrizLibros[i]){
                 this.libro = libro;
-                this.matrizLibros[i] = this.libro;
-                this.precio[1][i] = precio;
+                this.matrizLibros[i] = libro;
+                this.precio[i] = precio;
                 this.cantidad[i] = cantidad;
-                this.submonto = (this.cantidad[i] * this.precio[i][i]);
-                this.precio[2][i] = this.submonto;
+                this.submonto = (cantidad * precio);
             }
         }
     }
@@ -88,7 +85,7 @@ public class Factura {
 
             if(getFactura() != matrizFacturas[i]){
                 matrizFacturas[i] = getFactura();
-            } continue;
+            }
         }
     }
 
@@ -106,7 +103,7 @@ public class Factura {
     public String toString(){
         for (int i = 0; i < matrizLibros.length; i++) {
             if (this.libro == matrizLibros[i]) {
-                return "\nFACTURA" + "\nNOMBRE DEL LIBRO -------> " + matrizLibros[i] + "\nCOSTO DEL LIBRO ------>" + precio[1][i] + "\nITBIS -------> " + ITBIS + "\nDescuento -------> " + descuento + "\nTOTAL A PAGAR ------->" + totalApagar + "\nNUMERO DE FACTURA -------> " + numFactura + "\nFECHA ------> " + fechaFactura + "\nGRACIAS POR SU COMPRA" + "\n";
+                return "\nFACTURA" + "\nNOMBRE DEL LIBRO -------> " + matrizLibros[i] + "\nCOSTO DEL LIBRO ------> " + precio[i] + "\nITBIS -------> " + ITBIS + "\nDescuento -------> " + descuento + "\nTOTAL A PAGAR -------> " + totalApagar + "\nNUMERO DE FACTURA -------> " + numFactura + "\nFECHA ------> " + fechaFactura + "\nGRACIAS POR SU COMPRA" + "\n ";
             }
         }return "ERROR";
     }
@@ -117,8 +114,6 @@ public class Factura {
         String titulo;
         int precio;
         int cantidad;
-        double descuento = 0;
-        int num = 1;
         Libro libro = new Libro();
         Factura factura = new Factura("pedro", 5);
 
