@@ -75,15 +75,16 @@ public class Factura {
 
     //METODO PARA CALCULAR DESCUENTO
     public void calcularDescuento(){
-        this.descuento = (13 * this.monto / 100);
+        this.descuento = (10 * this.monto / 100);
     }
 
     // METODO PARA GENERAR NUMERO DE FACTURA
     public void generar_num_factura(){
         for (int i = 0; i < matrizFacturas.length; i++) {
-            this.numFactura = random.nextInt(900000) + 1;
+            int num = random.nextInt(900000) + 1;
 
-            if(getFactura() != matrizFacturas[i]){
+            if(num != matrizFacturas[i]){
+                this.numFactura = num;
                 matrizFacturas[i] = getFactura();
             }
         }
